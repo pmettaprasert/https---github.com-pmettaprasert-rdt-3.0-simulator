@@ -13,13 +13,8 @@ class Receiver:
         self.port_no = int(input("Enter the port number: "))
         self.sock = socket(AF_INET, SOCK_DGRAM)
         self.bind(self.port_no)
-
-        print("Current IP Address of this Receiver: " + str(
-            gethostbyname(gethostname())) + "\n")
-        print(
-            "Current port number of this Receiver: " + str(self.port_no) + "\n")
-
-        self.sock.settimeout(10)
+        self.timeout = 20
+        self.sock.settimeout(self.timeout)
         self.seq_num = 0
         self.packet_num = 1
         self.rdt_rcv()
@@ -39,6 +34,12 @@ class Receiver:
 
     def rdt_rcv(self):
 
+        print("Receiver will now be listening for packets on\nIP address: " +
+                str(gethostbyname(gethostname())) + "\nPort number: " +
+                str(self.port_no) + "\nTimeout: " + str(self.timeout) +
+              " seconds\n")
+
+        print("Waiting for packets...\n")
         while True:
             try:
                 data, addr = self.sock.recvfrom(1024)

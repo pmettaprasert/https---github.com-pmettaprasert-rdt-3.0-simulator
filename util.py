@@ -70,7 +70,10 @@ def make_packet(data_str, ack_num, seq_num):
       a created packet in bytes
 
     """
-    packet = b'COMPNETW'
+
+    packet = bytearray()
+
+    packet += b'COMPNETW'
 
     # leave two bytes for the checksum
     packet += b'\x00\x00'
@@ -92,7 +95,7 @@ def make_packet(data_str, ack_num, seq_num):
     checksum = create_checksum(packet)
     packet[8:10] = checksum.to_bytes(2, byteorder='big')
 
-    return packet
+    return bytes(packet)
 
 
 ###### These three functions will be automatically tested while grading. ######
