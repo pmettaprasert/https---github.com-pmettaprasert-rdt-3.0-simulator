@@ -19,7 +19,7 @@ class Receiver:
         print(
             "Current port number of this Receiver: " + str(self.port_no) + "\n")
 
-        self.sock.settimeout(6)
+        self.sock.settimeout(10)
         self.seq_num = 0
         self.packet_num = 1
         self.rdt_rcv()
@@ -118,8 +118,8 @@ if __name__ == "__main__":
             "checksum. If the checksum is correct, it will check for these "
           "scenarios:\n")
     print("1. If the packet is divisible by 6, it will simulate a timeout.")
-    print("2. If the packet is divisible by 3 (but 6 six is checked first), "
-          "it will simulate a packet corruption.")
+    print("2. If the packet is divisible by 3 (but divisible by 6 is checked "
+          "first), it will simulate a packet corruption.")
     print("3. If the packet is the expected packet, it will send back the ack "
             "for that packet.")
     print("4. If the packet is not the expected packet, it will send back the "
