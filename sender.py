@@ -76,9 +76,9 @@ class Sender:
             except:
                 if not self.received_incorrect_ack:
                     print("An ACK has not been received, therefore have "
-                          "waited until timeout to resend packet...")
-                print("Reached end of timeout, resending packet with msg: " +
-                      app_msg_str + " and sequence number: " + str(
+                          "to wait\nuntil timeout to resend packet...")
+                print("Reached end of timeout, resending packet with msg: \"" +
+                      app_msg_str + "\"\nand sequence number: " + str(
                     self.seq_num) + "\n\n")
 
 
@@ -97,7 +97,7 @@ class Sender:
                 print("Packet number " + str(self.packet_counter) + " was "
                         "received correctly.")
                 print("Ack number from receiver: " + str(get_ack_num(data)) +
-                      " == sequence number from sender: " + str(self.seq_num))
+                      " ==\nsequence number from sender: " + str(self.seq_num))
 
                 print("Changing the sequence number from " + str(
                     self.seq_num) + " to " + str(self.seq_num ^ 1))
