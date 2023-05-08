@@ -61,3 +61,10 @@ class TestUtil(unittest.TestCase):
         self.assertEqual(packet, b'COMPNETW\xf7\xd8\x00@msg7')
         self.assertEqual(get_seq_num(packet), 0)
         self.assertEqual(verify_checksum(packet), True)
+
+
+    def test_empty_with_ack(self):
+        msg = ""
+        seq = 0
+        packet = make_packet(msg, 1, seq)
+        self.assertEqual(1, get_ack_num(packet))
