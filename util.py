@@ -51,6 +51,7 @@ def verify_checksum(packet):
 
         # account for overflow
         if checksum > 0xffff:
+
             # wrap around
             checksum = (checksum & 0xffff) + 1
 
@@ -105,12 +106,32 @@ def make_packet(data_str, ack_num, seq_num):
 
 
 def get_seq_num(packet):
+    """
+    Get the sequence number of the packet
+
+    Args:
+        packet: the packet byte data
+
+    Returns:
+        the sequence number of the packet
+    """
     length_ack_seq_segment = int.from_bytes(packet[10:12], byteorder='big')
     seq_num = length_ack_seq_segment & 1
     return seq_num
 
 
 def get_ack_num(packet):
+
+    """
+    Get the ack number of the packet
+
+    Args:
+        packet: the packet byte data
+
+    Returns:
+        the ack number of the packet
+
+    """
     length_ack_seq_segment = int.from_bytes(packet[10:12], byteorder='big')
     ack_num = (length_ack_seq_segment >> 1) & 1
     return ack_num

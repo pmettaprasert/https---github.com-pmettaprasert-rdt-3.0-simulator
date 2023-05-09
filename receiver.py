@@ -51,7 +51,9 @@ class Receiver:
         """
         Binds the socket to a port number. If the port number is in use,
         increment it linearly until it can bind correctly.
-        :param port_no: User inputted port number
+
+        Args:
+            port_no (int): the port number to bind the socket to.
 
         """
 
@@ -155,8 +157,12 @@ class Receiver:
     def get_msg(self, data):
         """
         Gets the message from the packet.
-        :param data: The packet received
-        :return: The message from the packet as a string
+
+        Args:
+            - data (bytes): the packet to get the message from.
+
+        Returns:
+            - str: the message from the packet.
         """
         return str(data[12:].decode('utf-8'))
 

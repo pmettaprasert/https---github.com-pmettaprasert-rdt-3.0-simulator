@@ -44,6 +44,7 @@ class Sender:
            is corrupted (when the receiver sends back the previous sequence
            ACK), the sender will wait for the timeout period and resend the
            ACK.
+
         Args:
           app_msg_str: the message string (to be put in the data field of the
           packet)
